@@ -1,0 +1,106 @@
+
+####### ABRE EL TERMINALLLLLLLLL...
+   sudo apt-get install mysql-server
+
+
+###### OJOOOOOOOOOOOOOOOOOOO:: PONES TU CONTRASEÑA NO TE LA OLVIDES!!!!!!
+
+
+######## PARA INGRESAR A MYSQL POR EL TERMINAL 
+
+   mysql -uroot -p
+
+OJOOOOOOO: PONES TU CONTRASEÑA CON LA QUE TE REGISTRASTE AHI TE LA PEDIRAN
+
+######  ABRES PYTHONNNNNNNNNNNN CTL+C  LUEGO CTRL+B
+
+
+import os, sys
+import MySQLdb
+import signal, os, sys
+
+db = MySQLdb.connect(host='localhost',    # tu host, usualmente localhost
+                     user='root',         # tu usuario
+                     passwd='diego',  # tu password
+                     db='prueba') # el nombre de la base de datos
+
+
+a=db.cursor()
+
+sql='select * from audio;'    #### AQUI VA LA CONSULTA QUE QUIERES MOSTRAR 
+a.execute(sql)
+
+countrow=a.execute(sql)
+print("Number date",countrow)
+data=a.fetchall()
+print(data)
+
+
+
+
+###################################################################################3
+
+
+########################################  MANEJO DE LA BASE DE DATOS   ######################
+
+
+
+##### OBSERVAS TUS BDS
+
+   show databases;
+
+###### CREAS UNA BASE DE DATOS CO EL SIGUIENTE COMANDO
+
+   create database NOMBREDELABD;
+  
+###### TRABAJAR EN LA BASE DE DATOS QUE QUIERAS USAS 
+
+    use NOMBREDELABD;
+
+##### CREAR UNA TABLA
+
+   create table NOMBREDELATABLA (codigo INT, AUDIO blob, DETALLES NVARCHAR(30),...,...,...,....);
+
+
+##### INSERTAR VALORES A LA TABLA
+
+  insert NOMBREDELATABLA values (43251354314, '/HOME/DIEGO/ESCRITORIO/AUDIO.WAV' , ..... , ....);
+
+#### MOSTRAR VAORES CON CONSUTAS IGUAL Q EN SQ CTV
+
+
+   select * from NOMBREDELATABLA;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
