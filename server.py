@@ -74,7 +74,7 @@ def upload_file():
             cut.separate_audio(os.path.join(app.config["UPLOAD_FOLDER"]),name)
 
             #entering audio file to database
-            mysql_python.input(os.path.join(app.config["UPLOAD_FOLDER"]))
+            mysql_python.input(os.path.join(app.config["UPLOAD_FOLDER"])+"/"+name)
 
             return redirect(url_for('uploaded_file',filename=filename))
 
