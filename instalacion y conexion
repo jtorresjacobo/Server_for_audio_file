@@ -1,5 +1,5 @@
 
-####### ABRE EL TERMINALLLLLLLLL...
+####### ABRIR EL TERMINALLLLLLLLL...
 
 
    sudo apt-get install mysql-server
@@ -15,38 +15,7 @@
 OJOOOOOOO: PONES TU CONTRASEÑA CON LA QUE TE REGISTRASTE AHI TE LA PEDIRAN
 
 
-######  ABRES PYTHON INGRESAS ESTE CODIGO DE PRUEBA DE PYTHON PARA VERIFICAR LA CONEXION (CTL+C  LUEGO CTRL+B)
-
-#####################################################################################
-import os, sys
-import MySQLdb
-import signal, os, sys
-
-db = MySQLdb.connect(host='localhost',    # tu host, usualmente localhost
-                     user='root',         # tu usuario
-                     passwd='diego',      # tu password
-                     db='prueba')         # el nombre de la base de datos
-
-
-a=db.cursor()
-
-sql='select * from audio;'    #### AQUI VA LA CONSULTA QUE QUIERES MOSTRAR 
-a.execute(sql)
-
-countrow=a.execute(sql)
-print("Number date",countrow)
-data=a.fetchall()
-print(data)
-
-
-
-
-######################################################################################
-
-
-########################################  MANEJO DE LA BASE DE DATOS   ######################
-
-
+########################################  CREACION Y MANEJO DE LA BASE DE DATOS   ######################
 
 ##### OBSERVAS TUS BDS
 
@@ -79,6 +48,58 @@ print(data)
 #### ELIMINAR UNA TABLA 
 
    drop table NOMBREDETABLA
+
+
+
+
+######  ABRES PYTHON INGRESAS ESTE CODIGO DE PRUEBA DE PYTHON PARA VERIFICAR LA CONEXION (CTL+C  LUEGO CTRL+B)
+
+
+#####################################################################################
+import os, sys
+import MySQLdb
+import signal, os, sys
+
+db = MySQLdb.connect(host='localhost',    # tu host, usualmente localhost
+                     user='root',         # tu usuario
+                     passwd='diego',      # tu password
+                     db='prueba')         # el nombre de la base de datos
+
+
+a=db.cursor()
+
+sql='select * from audio;'    #### AQUI VA LA CONSULTA QUE QUIERES MOSTRAR 
+a.execute(sql)
+
+countrow=a.execute(sql)
+print("Number date",countrow)
+data=a.fetchall()
+print(data)
+
+
+
+
+######################################################################################
+
+
+
+
+
+
+
+
+
+
+############################################################################################################################33
+
+
+
+
+          ALMACENAMIENTO EN LA BASE DE DATOS
+
+
+
+Muestra el nombre de la maquina donde es corrido el programa ; la ruta del archivo donde se encuentra y los datos como fecha y hora de almacenamiento.
 
 
 
