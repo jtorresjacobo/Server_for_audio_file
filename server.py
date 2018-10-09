@@ -4,6 +4,7 @@ import mysql_python
 from flask import Flask
 from flask import Response, jsonify, request, redirect, url_for
 from pydub import AudioSegment
+import noise_s
 
 #persistent storage in dictionary
 import shelve
@@ -75,6 +76,7 @@ def upload_file():
 
             #entering audio file to database
             mysql_python.input(os.path.join(app.config["UPLOAD_FOLDER"])+"/"+name)
+            noise_s.path(os.path.join(app.config["UPLOAD_FOLDER"]),name)
 
             return redirect(url_for('uploaded_file',filename=filename))
 
