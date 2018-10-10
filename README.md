@@ -5,7 +5,7 @@ Documentación
 
 
 Funcionalidades:
-.Convierte audios formatos (Mp3,ogg) a fomrato .WAV 
+.Convierte audios formatos (Mp3,ogg) a formato .WAV 
 .Separa el audio en partes de 30 segundos
 .Crea un audio con ruido
 .Crea un audio con velocidad 0.5 a comparacion del audio original
