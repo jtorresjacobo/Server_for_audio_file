@@ -1,19 +1,20 @@
-import audiospeed
-import convert_wav_with_features
-import mysql_python
+import sys
+sys.path.insert(0, sys.path[0]+'/configaudio/')
+import convert_wav_with_features,noise_s,cut,audiospeed,mysql_python
 from flask import Flask
 from flask import Response, jsonify, request, redirect, url_for
 from pydub import AudioSegment
-import noise_s
+from flask import render_template, flash, redirect, url_for
 
 #persistent storage in dictionary
 import shelve
 #import main
 #printing ip of host
 import socket
-import cut
+
 #file uploading
 import os
+from config import Config
 from werkzeug.utils import secure_filename
 
 #serving files that were uploaded
@@ -25,15 +26,6 @@ ALLOWED_EXTENSIONS = set(['wav', 'ogg', 'mp3'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-#configuration
-def folder():
-    if request.method == 'POST':
-        file = request.files['file']
-        name=file.filename.split(".")
-        UPLOAD_FOLDER = './audio/'+name[0]
-        app = Flask(__name__)
-        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -50,18 +42,15 @@ def upload_file():
     except:        
         os.mkdir(app.config['UPLOAD_FOLDER'])
     if request.method == 'POST':
-        file = request.files['file']
+        file = request.files['file1']
         print 'filename: ' + file.filename
 
         if file and allowed_file(file.filename):
             print 'allowing file'
 
             filename = secure_filename(file.filename)
-
             name=filename.split(".")    
-
             #main route       
-
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
 
             #convert to format wav with features 
@@ -76,20 +65,13 @@ def upload_file():
 
             #entering audio file to database
             mysql_python.input(os.path.join(app.config["UPLOAD_FOLDER"])+"/"+name)
+
+            #noise
             noise_s.path(os.path.join(app.config["UPLOAD_FOLDER"]),name)
 
             return redirect(url_for('uploaded_file',filename=filename))
 
-    return '''
-        <!doctype html>
-        <title>Upload new File</title>
-        <h1>Upload new File</h1>
-        <form action="" method=post enctype=multipart/form-data>
-        <p><input type=file name=file>
-        <input type=submit value=Upload>
-        </form>
-        '''
-
+    return render_template('index.html',  title='Sign In')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -101,9 +83,9 @@ def uploaded_file(filename):
         <h1>Ingreso satisfactorio</h1>
         '''    
 
+
 #    return send_from_directory(app.config['UPLOAD_FOLDER'],
 #    						   "_1")
-
 if __name__ == '__main__':
 
     print(socket.gethostbyname(socket.gethostname()))
