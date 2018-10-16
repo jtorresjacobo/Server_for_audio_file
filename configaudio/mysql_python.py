@@ -16,12 +16,12 @@ def connection():
 	return db
 
 
-def input(path):
+def input(path,file):
 	#Conection
 	c=connection()
 	#cursor
 	a=c.cursor()
-	
+
 	#get date of audio input to the database for parameter usuario
 	details=utils_day.today()
 	#get system user for parameters "usuario"
@@ -32,8 +32,14 @@ def input(path):
 	a.execute(sql)
 	c.commit()
 
+#	sql1="insert paths values('"+data1+"hola"+"');"
+
+#	a.execute(sql1)
+#
 	#close conection
 	c.close()
+
+
 
 
 
