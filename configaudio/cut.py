@@ -2,6 +2,7 @@ import os
 from os import path
 from pydub import AudioSegment
 import soundfile as sf
+import controller
 
 
 def separate_audio(paths,filename):
@@ -30,7 +31,12 @@ def separate_audio(paths,filename):
 
 	for i in range(0,cant):
 		audio=sound[j:k]
-		audio.export(paths+"/"+"cut_"+name[0]+"_"+str(i),format="wav")
+		destino=paths+"/"+"cut_"+name[0]+"_"+str(i)
+		audio.export(destino,format="wav")
+		
+		#ingreso a bd
+		controller.main(destino)
+
 		j=j+30000
 		k=k+30000
 		i=i+1
@@ -39,4 +45,8 @@ def separate_audio(paths,filename):
 		if i==cant and sobrante!=0:
 			k=k+30000
 			audio=sound[j:halfway_point]
-			audio.export(paths+"/"+"cut_"+name[0]+"_"+str(i),format="wav")
+			destino=paths+"/"+"cut_"+name[0]+"_"+str(i)
+			audio.export(destino,format="wav")
+
+			#ingreso a bd
+			controller.main(destino)

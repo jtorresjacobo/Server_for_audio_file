@@ -1,5 +1,6 @@
 from pydub import AudioSegment
 from pydub.playback import play
+import controller
 
 #RUTA DE EL ARCHIVO A MODIFICAR
 #link='/home/diego/Escritorio/quechua.mp3'
@@ -22,7 +23,12 @@ def Extrac_Sonido(paths,filename):
 	sound_CentersOut = sound_monoL.overlay(sound_monoR_inv)
 
 # EXPORTACION DEL DOCUMENTO
-	sound_CentersOut.export(paths+"/"+filename[0]+"fondo.wav", format="wav")
+	destino=paths+"/"+filename[0]+"fondo.wav"
+	sound_CentersOut.export(destino, format="wav")
+
+	#ingreso a bd
+	controller.main(destino)
+
 
 	fil=filename[0]+"fondo.wav"
 
