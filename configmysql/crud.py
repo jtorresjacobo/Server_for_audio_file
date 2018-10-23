@@ -2,17 +2,13 @@ import connection
 import os, sys
 import MySQLdb
 
+#insertando audio a la bd 
 def Insert(usuario,path,date,duration):
 
 	c=connection.Connect()
-	a=c.cursor()
-
-	sql="insert File values('"+usuario+"','"+path+"','"+duration+"','"+date+"');"
-	a.execute(sql)
-
-	c.commit()
-	
-	c.close()
+	sql="INSERT INTO File(Usuario,Audio,Duracion,Detalles) VALUES (%s,%s,%s,%s)"
+	datos=(usuario,path,duration,date)
+	connection.Run_query(sql,datos,c)
 
 #def Update():
 	#Metodo para actualizar registros

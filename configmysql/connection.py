@@ -21,4 +21,11 @@ def Connect():
 	    sys.exit(1)	 
 
 
-a=Connect()
+def Run_query(sql,datos,conn):
+	a=conn.cursor()
+	
+	a.execute(sql,datos)
+
+	conn.commit()
+	
+	conn.close()
