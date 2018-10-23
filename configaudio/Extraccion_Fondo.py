@@ -7,7 +7,7 @@ import controller
 
 #FUNCION PARA EJECUTAR EL CAMBIO DE EXTRACCION DE SONIDO
 
-def Extrac_Sonido(paths,filename):
+def Extrac_Sonido(paths,filename,user):
 
 # read in audio file and get the two mono tracks
 	sound_stereo = AudioSegment.from_file(paths+"/"+filename, format="mp3")
@@ -27,7 +27,7 @@ def Extrac_Sonido(paths,filename):
 	sound_CentersOut.export(destino, format="wav")
 
 	#ingreso a bd
-	controller.main(destino)
+	controller.main(destino,user)
 
 
 	fil=filename[0]+"fondo.wav"

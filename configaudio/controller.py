@@ -5,8 +5,8 @@ import crud
 
 
 
-def main(path):
-	user=utils.user()
+def main(path,user):
+
 	date=utils.date()
 	duration=utils.audio_duration(path)
 

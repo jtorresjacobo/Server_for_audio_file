@@ -26,14 +26,15 @@ def upload_file():
 
     if request.method == 'POST':
         file = request.files['file1']
+#        user = request.texts['user1']
         print 'filename: ' + file.filename
 
         if file and allowed_file(file.filename):
             print 'allowing file'
-
+            user='lop'
             paths=os.path.join(app.config['UPLOAD_FOLDER'])
             filenames = secure_filename(file.filename)
-            main_audio.audio(file,paths,filenames)
+            main_audio.audio(file,paths,filenames,user)
                 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

@@ -1,7 +1,8 @@
 import os
 import controller
+import utils as u
 
-def audio(path,filename):
+def audio(path,filename,user):
 	#audio fomat wav
 	file=filename
 
@@ -11,8 +12,12 @@ def audio(path,filename):
 	#os.system("rm '"+path+archivo+"'")
 	destino=path+"/"+filename[0]+"_features.wav"
 
+	#duracion del audio
+	duracion=u.audio_duration(destino)
+
+
 	#ingreso a bd
-	controller.main(destino)
+	controller.main(destino,user)
 
 	return(filename[0]+"_features.wav")
 
